@@ -1,0 +1,7 @@
+fastapi
+uvicorn[standard]
+flask
+jinja2
+a2wsgi
+sqlalchemy
+pydantic

@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>{{ title }}</h1>
+  <p>{{ message }}</p>
+
+  <section>
+    <h2>Items from FastAPI</h2>
+
+    <form id="item-form">
+      <input type="text" id="name" placeholder="Item name" required>
+      <input type="number" id="price" placeholder="Price" step="0.01" required>
+      <button type="submit">Create item</button>
+    </form>
+
+    <button id="load-items">Load items</button>
+    <pre id="result"></pre>
+  </section>
+
+  <script>
+    const result = document.getElementById("result");
+
+    async function loadItems() {
+      const res = await fetch("/api/items");
+      const data = await res.json();
+      result.textContent = JSON.stringify(data, null, 2);
+    }
+
+    document.getElementById("load-items").addEventListener("click", loadItems);
+
+    document.getElementById("item-form").addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const payload = {
+        name: document.getElementById("name").value,
+        price: parseFloat(document.getElementById("price").value)
+      };
+
+      const res = await fetch("/api/items", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      });
+
+      const data = await res.json();
+      result.textContent = JSON.stringify(data, null, 2);
+      await loadItems();
+    });
+  </script>
+{% endblock %}
