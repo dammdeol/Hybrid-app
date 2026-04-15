@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from a2wsgi import WSGIMiddleware
+from fastapi_pagination import add_pagination
 
 from app.api.items import router as items_router
 from app.db import Base, engine, SessionLocal
@@ -27,6 +28,7 @@ def startup():
 
 
 app.include_router(items_router, prefix="/api")
+add_pagination(app)
 
 flask_app = create_flask_app()
 app.mount("/", WSGIMiddleware(flask_app))
