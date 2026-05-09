@@ -3,4 +3,7 @@
 
 <img src="https://raw.githubusercontent.com/dammdeol/Hybrid-app/main/memoji.png" width='300'/>
 
+<!--
 <a href="https://dammdeol.github.io/MO-PCDE_M9_final_assignment/M9_Final_Assignment.ipynb"> Hybrid App </a>
+-->
+<a href="https://github.com/dammdeol/Hybrid-app"> Hybrid App </a>
